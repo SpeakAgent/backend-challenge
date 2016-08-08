@@ -1,9 +1,11 @@
 from django.conf.urls import url
 
-urlpatterns = [
-    #Class Based View
-    # url(r'^$', StudentView.as_view(), name='students'),
+from .views import StudentView
 
-    #Function View
-    #url(r'^$', views.StudentsView, name='students')
+urlpatterns = [
+    #Class Based View url
+    url(r'^$', StudentView.as_view(), name='students'),
+
+    #Function Based View url
+    # url(r'^$', StudentView, name='students')
 ]
