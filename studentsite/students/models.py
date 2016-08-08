@@ -8,6 +8,8 @@ class Student(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(default=datetime.date.today)
     grade = models.CharField(max_length=1, blank=True)
+    school = models.ForeignKey('students.School')
+    teachers = models.ManyToManyField('students.Teacher')
 
     def __unicode__(self):
         return u"{l}, {f}".format(
