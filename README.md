@@ -41,8 +41,8 @@ Create a new view for getting all students in the database of the same grade. Ad
 All students
 ============
 
-Abner, Jill - Grade K, born 6/2/2011
-Bela, Juan - Grade 1, born 2/2/201
+- Abner, Jill - Grade K, born 6/2/2011
+- Bela, Juan - Grade 1, born 2/2/201
 ...
 
 ***
