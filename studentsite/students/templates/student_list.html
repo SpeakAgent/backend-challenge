@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Students List{% endblock title %}
+
+{% block content %}
+  <ul>
+    {% for student in students %}
+      <li>{{ student.last_name }}, {{ student.first_name }} - Grade {{ student.grade }}, born {{ student.date_of_birth|date:"j/n/Y" }}</li>
+    {% endfor %}
+  <ul>
+{% endblock content %}
