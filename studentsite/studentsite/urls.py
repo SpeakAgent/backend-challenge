@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from students import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^grade/(?P<grade>[a-zA-Z0-9_-]+)/', views.GradeView.as_view()),
 ]
