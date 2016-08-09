@@ -1,101 +1,21 @@
-Speak Agent coding challenge for backend developers
-
-
-Set up your local environment
------------------------------
-
-Go to the Github repo and create a fork of the repository. Using virtualenv, install the Django project onto your local machine. Set up the database and add some data.
-
-Make some modifications
------------------------
-
-The student model under the Student app is fairly barebones. Add the following fields:
-
-- Date of birth
-- Grade
-
-Add a view
-----------
-
-Create a new view for getting all students in the database of the same grade. Add a new route and a template to display the data from this view. It should look something like this:
-
-***
-
-All students
+Fork based on Speak Agent coding challenge for backend developers
 ============
+---
 
-- Abner, Jill - Grade K, born 6/2/2011
-- Bela, Juan - Grade 1, born 2/2/201
-...
+## Description
 
-***
+- Created local virtual environment using `virtualenv` command.
 
-Add new models
---------------
+- Added fields date_of_birth and grade to Student model.
 
-In the Student app, add two new models: School and Teacher. The fields for each:
+- Created urls.py for student app and created two types of views, Class Based View and a simple Function Based View (this code lines are commented).
 
-School:
-  Title, address
+- Created base.html template and student_list.html template to show a list of the students from the database.
 
-Teacher:
-  First name, last name
+- Added new model named School with fields title and address.
 
-Hook up the new models to Student
----------------------------------
+- Added new model named Teacher with fields first_name and last_name.
 
-Each student has one school, but can have multiple teachers. Add these fields to the student model and migrate the database.
+- Added Django Rest Framework and created two api calls, one to retrieve a [list of all students](https://speakagentchallenge.herokuapp.com/api/students/) and one to [retrieve students by PK](https://speakagentchallenge.herokuapp.com/api/students/1/).
 
-Add in Django Rest Framework
-----------------------------
-
-Our work at Speak Agent relies heavily on the Django Rest Framework. It’s okay if you’re not familiar with it, but being able to read the documentation and set up a simple call will show us that you can quickly get up to speed with our architecture.
-
-Here is the link to the Django Rest Framework documentation: http://www.django-rest-framework.org/. It may be helpful to also go through the DRF tutorial: http://www.django-rest-framework.org/#tutorial.
-
-Now that the app is set up, create two API calls:
-- One for getting one student by PK
-- One for getting all students in the system
-
-The JSON returned from the calls should look something like this:
-
-Single student:
-
-    {
-        first_name: first_name,
-        last_name: last_name,
-        grade: grade,
-        dob: date
-    }
-
-All students:
-
-    {
-        [
-            first_name: first_name,
-            last_name: last_name,
-            grade: grade,
-            dob: date
-        ],
-        ...
-    }
-
-***
-
-Make sure that these calls work before moving onto the next section.
-
-Deploy to Heroku
-----------------
-
-> Heroku is another important part of our architecture. Once again, it’s okay if you’re not familiar with it, but being able deploy a site to Heroku will show us that you can quickly get up to speed with our architecture.
-
-> Here is a link to the Heroku documentation about getting a Django site set up on their dynos: https://devcenter.heroku.com/articles/deploying-python
-
-Now that the app is complete, you’ll need to deploy it to Heroku. Note: Please use the free tier!
-
-Deploy the app to Heroku, create some data, and create an admin login for a member of the Speak Agent team to use.
-
-Submit the app to Speak Agent
------------------------------
-
-Create a pull request on the Speak Agent repo and email Speak Agent a link to your Heroku site, including the admin username and password that you created. We’ll contact you within a few days!
+- Deployed application to Heroku , application URL: [https://speakagentchallenge.herokuapp.com](https://speakagentchallenge.herokuapp.com).
