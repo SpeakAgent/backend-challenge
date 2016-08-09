@@ -1,6 +1,5 @@
 Fork based on Speak Agent coding challenge for backend developers
 ============
----
 
 ## Description
 
