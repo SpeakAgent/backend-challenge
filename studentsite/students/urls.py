@@ -11,10 +11,10 @@ router = DefaultRouter()
 router.register(r'students', StudentViewSet)
 
 urlpatterns = [
-    #Class Based View url
+    # Class Based View url
     url(r'^$', StudentView.as_view(), name='students'),
 
-    #Function Based View url
+    # Function Based View url
     # url(r'^$', StudentView, name='students')
 
     url(r'^api/', include(router.urls)),

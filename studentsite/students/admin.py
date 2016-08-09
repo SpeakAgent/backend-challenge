@@ -4,11 +4,14 @@ from students.models import Student
 from students.models import School
 from students.models import Teacher
 
+
 class StudentAdmin(admin.ModelAdmin):
     pass
 
+
 class TeacherAdmin(admin.ModelAdmin):
     pass
+
 
 class SchoolAdmin(admin.ModelAdmin):
     pass
