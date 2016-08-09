@@ -24,6 +24,7 @@ DEBUG = False
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+
 def get_env_setting(setting):
     """ Get the environment setting or return exception """
     try:
