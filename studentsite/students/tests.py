@@ -16,4 +16,4 @@ class CreateStudentTest(TestCase):
         )
 
         self.assertTrue(isinstance(student, Student))
-        self.assertEqual(student.__unicode__(), "Doe, John - Grade K, born 8/15/2010")
+        self.assertEqual(str(student), "Doe, John - Grade K, born 8/15/2010")
