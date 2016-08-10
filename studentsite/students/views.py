@@ -9,6 +9,9 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 # Class Based View
 class StudentView(ListView):
+    '''
+    View logic to list the students with the same grade.
+    '''
     context_object_name = 'data'
     template_name = 'student_list.html'
 
@@ -20,6 +23,9 @@ class StudentView(ListView):
 
 # Function Based View
 # def StudentView(request, studentGrade):
+#     '''
+#     View logic to list the students with the same grade.
+#     '''
 #     # studentGrade = request.GET.get('studentGrade')
 #     student_list = Student.objects.filter(grade=studentGrade)
 #     data = {'data': {'students': student_list, 'grade': studentGrade}}

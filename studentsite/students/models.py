@@ -4,6 +4,8 @@ import datetime
 from django.db import models
 
 
+# Student model, every student have one school
+# and can have one or more teachers.
 class Student(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -18,6 +20,7 @@ class Student(models.Model):
             f=self.first_name)
 
 
+# School model
 class School(models.Model):
     title = models.CharField(max_length=100)
     address = models.TextField()
@@ -26,6 +29,7 @@ class School(models.Model):
         return self.title
 
 
+# Teacher model
 class Teacher(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
