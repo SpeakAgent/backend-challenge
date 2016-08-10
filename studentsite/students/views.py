@@ -4,6 +4,21 @@ from .models import Student
 from .serializers import StudentSerializer
 
 
+class GradesListView(ListView):
+    """
+    View for listing all grades with students.
+    NOTE: This isn't part of the challenge requirements--I just wanted
+    something to put on the app's root URL.
+    """
+    template_name = "list_grades.html"
+
+    def get_queryset(self):
+        """
+        Returns queryset containing all grades.
+        """
+        return Student.objects.order_by('grade').values('grade').distinct()
+
+
 class GradeView(ListView):
     template_name = "students_by_grade.html"
 

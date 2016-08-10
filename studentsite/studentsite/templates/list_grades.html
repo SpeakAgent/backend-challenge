@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>All grades:</h1>
+  {% if object_list %}
+    <ul>
+      {% for grade_dict in object_list %}
+        <li><a href="{% url 'grade' grade_dict.grade %}">{{ grade_dict.grade }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No grades found. (Try adding some students.)</p>
+  {% endif %}
+  <p>(Also check out the <a href="{% url 'api:api-root' %}">API</a>!)</p>
+{% endblock content %}

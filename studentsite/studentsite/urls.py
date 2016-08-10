@@ -19,12 +19,13 @@ from rest_framework.routers import DefaultRouter
 
 from students import views
 
-
+# URL router for Students API
 router = DefaultRouter()
 router.register(r'students', views.StudentViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^grade/(?P<grade>.+?)/', views.GradeView.as_view()),
-    url(r'^api/', include(router.urls)),
+    url(r'^api/', include(router.urls, namespace='api')),
+    url(r'^grade/(?P<grade>.+?)/', views.GradeView.as_view(), name='grade'),
+    url(r'^', views.GradesListView.as_view(), name='grades_list')
 ]
