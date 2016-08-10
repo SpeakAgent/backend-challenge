@@ -27,5 +27,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls, namespace='api')),
     url(r'^grade/(?P<grade>.+?)/', views.GradeView.as_view(), name='grade'),
-    url(r'^', views.GradesListView.as_view(), name='grades_list')
+    url(r'^$', views.GradesListView.as_view(), name='grades_list')
 ]
