@@ -9,15 +9,21 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 # Class Based View
 class StudentView(ListView):
-    queryset = Student.objects.filter(grade='K')
-    context_object_name = 'students'
+    context_object_name = 'data'
     template_name = 'student_list.html'
 
+    def get_queryset(self):
+        studentGrade = self.kwargs['studentGrade']
+        queryset = Student.objects.filter(grade=studentGrade)
+        data = {'students': queryset, 'grade': studentGrade}
+        return data
 
 # Function Based View
-# def StudentView(request):
-#     student_list = Student.objects.filter(grade='K')
-#     return render(request, 'student_list.html', {'students': student_list})
+# def StudentView(request, studentGrade):
+#     # studentGrade = request.GET.get('studentGrade')
+#     student_list = Student.objects.filter(grade=studentGrade)
+#     data = {'data': {'students': student_list, 'grade': studentGrade}}
+#     return render(request, 'student_list.html', data)
 
 
 # Api calls

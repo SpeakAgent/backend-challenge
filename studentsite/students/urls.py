@@ -12,10 +12,12 @@ router.register(r'students', StudentViewSet)
 
 urlpatterns = [
     # Class Based View url
-    url(r'^$', StudentView.as_view(), name='students'),
+    url(r'^student-grade/(?P<studentGrade>[a-zA-Z0-9]+)/',
+        StudentView.as_view()),
 
     # Function Based View url
-    # url(r'^$', StudentView, name='students')
+    # url(r'^student-grade/(?P<studentGrade>[a-zA-Z0-9]+)/',
+    #     StudentView, name='students'),
 
     url(r'^api/', include(router.urls)),
 ]
