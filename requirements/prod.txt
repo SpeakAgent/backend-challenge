@@ -1,0 +1,4 @@
+-r base.txt
+
+dj-static==0.0.6
+django-toolbelt==0.0.1

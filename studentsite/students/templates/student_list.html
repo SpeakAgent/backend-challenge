@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Students List{% endblock title %}
+
+{% block content %}
+  {% if data.students %}
+    <h3>Student{{data.students|pluralize}} with grade: {{ data.grade }}</h3>
+    <ul>
+      {% for student in data.students %}
+        <li>{{ student.last_name }}, {{ student.first_name }} - Grade {{ student.grade }}, born {{ student.date_of_birth|date:"j/n/Y" }}</li>
+      {% endfor %}
+    <ul>
+   {% else %}
+    <h3>No students found with grade: {{data.grade}}</h3>
+   {% endif %}
+{% endblock content %}
