@@ -7,7 +7,7 @@ Fork based on Speak Agent coding challenge for backend developers
 
 - Added fields date_of_birth and grade to Student model.
 
-- Created urls.py for student app and created two types of views, Class Based View and a simple Function Based View (this code lines are commented), these views filter all students with grade = 'K'.
+- Created urls.py for student app and created two types of views, Class Based View and a simple Function Based View (these lines of code are commented), here is the [URL](http://speakagentchallenge.herokuapp.com/student-grade/K/).
 
 - Created base.html template and student_list.html template to show a list of the students from the database.
 
@@ -27,8 +27,8 @@ Fork based on Speak Agent coding challenge for backend developers
 Clone this repository and open the Terminal on the root folder of the project.  And run this commands:
 
 ~~~~
-virtualenv venv
-source venv/bin/activate
+virtualenv env
+source env/bin/activate
 pip install -r requirements/dev.txt
 ./studentsite/manage.py migrate
 ./studentsite/manage.py createsuperuser
