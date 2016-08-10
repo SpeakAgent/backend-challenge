@@ -5,7 +5,7 @@ from .models import Student, Teacher, School
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'grade', 'date_of_birth')
+    list_display = ('full_name', 'grade', 'date_of_birth')
 
 
 @admin.register(School)
@@ -15,4 +15,4 @@ class SchoolAdmin(admin.ModelAdmin):
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name')
+    list_display = ('full_name',)
