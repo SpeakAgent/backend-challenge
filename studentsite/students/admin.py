@@ -5,7 +5,7 @@ from .models import Student, Teacher, School
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'grade', 'dob')
+    list_display = ('full_name', 'school', 'grade', 'dob')
 
 
 @admin.register(School)
