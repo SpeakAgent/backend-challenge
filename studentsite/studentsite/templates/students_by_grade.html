@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Students in grade {{ grade }}:</h1>
+  {% if student_list %}
+    <ul>
+      {% for student in student_list %}
+        <li>{{ student.last_name }}, {{ student.first_name }} - Grade {{ grade }}, born {{ student.dob|date:"n/j/Y" }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No students found.</p>
+  {% endif %}
+{% endblock content %}
