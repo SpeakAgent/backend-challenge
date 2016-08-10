@@ -1,8 +1,18 @@
 from django.contrib import admin
 
-from students.models import Student
+from .models import Student, Teacher, School
 
+
+@admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'grade', 'date_of_birth')
 
-admin.site.register(Student, StudentAdmin)
+
+@admin.register(School)
+class SchoolAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name')
