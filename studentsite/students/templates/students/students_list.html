@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ page_title }}</h1>
+  <hr>
+  {% if students %}
+    <ol style="list-style-type:disc;">
+      {% for student in students %}
+        <li>{{ student }}</li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p>No students found.</p>
+  {% endif %}
+{% endblock %}
