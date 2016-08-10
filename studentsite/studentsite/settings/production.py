@@ -3,9 +3,6 @@ from .base import *
 
 DEBUG = False
 
-STATIC_ROOT = os.path.join(os.getcwd(), "staticfiles")
-STATICFILES_DIRS = ()
-
 # Security-related settings
 ALLOWED_HOSTS = ["*"]
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
