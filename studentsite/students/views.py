@@ -11,6 +11,7 @@ class GradesListView(ListView):
     something to put on the app's root URL.
     """
     template_name = "list_grades.html"
+    context_object_name = "grade_list"
 
     def get_queryset(self):
         """

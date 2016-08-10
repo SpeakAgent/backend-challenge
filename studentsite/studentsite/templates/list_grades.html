@@ -2,9 +2,9 @@
 
 {% block content %}
   <h1>All grades:</h1>
-  {% if object_list %}
+  {% if grade_list %}
     <ul>
-      {% for grade_dict in object_list %}
+      {% for grade_dict in grade_list %}
         <li><a href="{% url 'grade' grade_dict.grade %}">{{ grade_dict.grade }}</a></li>
       {% endfor %}
     </ul>
