@@ -5,25 +5,6 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
-class PersonInfo(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-
-    class Meta:
-        abstract = True
-        ordering = ['last_name', 'first_name']
-
-    def full_name(self):
-        return u"{l}, {f}".format(
-            l=self.last_name,
-            f=self.first_name)
-    full_name.short_description = "Full name"
-
-    def __str__(self):
-        return self.full_name()
-
-
-@python_2_unicode_compatible
 class School(models.Model):
     title = models.CharField(max_length=100)
     address = models.TextField()
@@ -32,12 +13,38 @@ class School(models.Model):
         return self.title
 
 
+@python_2_unicode_compatible  # Prevents having to also define __unicode__()
+class PersonInfo(models.Model):
+    """
+    Abstract base class providing common functionality for models with
+    `first_name` and `last_name` fields.
+    """
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+    class Meta:
+        abstract = True
+        ordering = ['last_name', 'first_name']
+
+    @property
+    def full_name(self):
+        """
+        Property representing the full name in "Lastname, Firstname" format.
+        """
+        return "{l}, {f}".format(
+            l=self.last_name,
+            f=self.first_name)
+
+    def __str__(self):
+        return self.full_name
+
+
 class Teacher(PersonInfo):
     pass
 
 
 class Student(PersonInfo):
-    dob = models.DateField(blank=True, null=True)
+    dob = models.DateField("Date of birth", blank=True, null=True)
 
     # Using CharField for the grade could be problematic without some
     # validation, since it's used verbatim as part of a URL. In a real-world
