@@ -27,8 +27,8 @@ Fork based on Speak Agent coding challenge for backend developers
 Clone this repository and open the Terminal on the root folder of the project.  And run this commands:
 
 ~~~~
-virtualenv venv
-source venv/bin/activate
+virtualenv env
+source env/bin/activate
 pip install -r requirements/dev.txt
 ./studentsite/manage.py migrate
 ./studentsite/manage.py createsuperuser
