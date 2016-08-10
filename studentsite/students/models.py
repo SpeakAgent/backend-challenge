@@ -10,10 +10,14 @@ class PersonInfo(models.Model):
     class Meta:
         abstract = True
 
-    def __unicode__(self):
+    def full_name(self):
         return u"{l}, {f}".format(
             l=self.last_name,
             f=self.first_name)
+    full_name.short_description = "Full name"
+
+    def __unicode__(self):
+        return self.full_name()
 
 
 class School(models.Model):
