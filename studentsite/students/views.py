@@ -21,6 +21,10 @@ class GradesListView(ListView):
 
 
 class GradeView(ListView):
+    """
+    View to display all students in a particular grade. Takes a keyword
+    argument `grade` and sets a context variable `grade`.
+    """
     template_name = "students_by_grade.html"
 
     def get_queryset(self):
@@ -37,7 +41,7 @@ class GradeView(ListView):
 
 class StudentViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Viewset providing "list" and "detail" REST API actions for Students.
+    Viewset providing "list" and "retrieve" REST API actions for Students.
     """
     queryset = Student.objects.all()
     serializer_class = StudentSerializer

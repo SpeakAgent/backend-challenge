@@ -11,6 +11,7 @@ class PersonInfo(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ['last_name', 'first_name']
 
     def full_name(self):
         return u"{l}, {f}".format(
