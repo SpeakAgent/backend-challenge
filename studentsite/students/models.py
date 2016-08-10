@@ -5,11 +5,34 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
+class School(models.Model):
+    title = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+
+@python_2_unicode_compatible
+class Teacher(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{l}, {f}".format(
+            l=self.last_name,
+            f=self.first_name)
+
+
+@python_2_unicode_compatible
 class Student(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True)
     grade = models.CharField(null=True, max_length=20)
+
+    school = models.ForeignKey(School, null=True, on_delete=models.CASCADE)
+    teachers = models.ManyToManyField(Teacher)
 
     def __str__(self):
         return "{l}, {f} - Grade {g}, born {dob:%-m/%-d/%Y}".format(

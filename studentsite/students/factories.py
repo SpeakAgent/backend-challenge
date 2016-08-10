@@ -1,12 +1,24 @@
 import random
 
 import faker
-from factory import DjangoModelFactory, LazyAttribute, LazyFunction
+from factory import DjangoModelFactory, LazyAttribute, LazyFunction, post_generation
 
-from .models import Student
+from .models import School, Student, Teacher
 
 
 faker = faker.Factory.create()
+
+
+SCHOOL_LEVELS = ["Elementary", "Middle", "High"]
+
+
+class SchoolFactory(DjangoModelFactory):
+    """Generate a random school."""
+    class Meta:
+        model = School
+
+    title = LazyFunction(lambda: "{} {} School".format(faker.street_name(), random.choice(SCHOOL_LEVELS)))
+    address = LazyFunction(faker.street_address)
 
 
 SAMPLE_GRADES = ["Pre-K", "K"] + [str(i) for i in range(1, 13)]
@@ -39,3 +51,30 @@ class StudentFactory(DjangoModelFactory):
     last_name = LazyFunction(faker.last_name)
     date_of_birth = LazyAttribute(lambda s: dob_for_grade(s.grade))
     grade = LazyFunction(lambda: random.choice(SAMPLE_GRADES))
+
+    @post_generation
+    def schools(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        if extracted:
+            self.school = random.choice(extracted)
+
+    @post_generation
+    def teachers(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        if extracted:
+            num_teachers = random.randint(min(2, len(extracted)), min(5, len(extracted)))
+            for teacher in random.sample(extracted, num_teachers):
+                self.teachers.add(teacher)
+
+
+class TeacherFactory(DjangoModelFactory):
+    """Generate a random teacher."""
+    class Meta:
+        model = Teacher
+
+    first_name = LazyFunction(faker.first_name)
+    last_name = LazyFunction(faker.last_name)

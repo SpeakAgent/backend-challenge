@@ -5,11 +5,23 @@ import re
 from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
 
-from .factories import SAMPLE_GRADES, StudentFactory
-from .models import Student
+from .factories import SAMPLE_GRADES, SchoolFactory, StudentFactory, TeacherFactory
+from .models import School, Student, Teacher
 
 
 client = Client()
+
+
+class CreateSchoolTest(TestCase):
+
+    def test_create_school(self):
+        school = School.objects.create(
+            title="Main High School",
+            address="123 Main St. Metropolis, NY 10000"
+        )
+
+        self.assertTrue(isinstance(school, School))
+        self.assertEqual(str(school), "Main High School")
 
 
 class CreateStudentTest(TestCase):
@@ -24,6 +36,31 @@ class CreateStudentTest(TestCase):
 
         self.assertTrue(isinstance(student, Student))
         self.assertEqual(str(student), "Doe, John - Grade K, born 8/15/2010")
+
+    def test_school_relation(self):
+        school = SchoolFactory.create()
+        StudentFactory.create(schools=[school])
+
+        self.assertEqual(Student.objects.filter(school__title=school.title).count(), 1)
+
+    def test_teacher_relation(self):
+        teacher = TeacherFactory.create()
+        StudentFactory.create(teachers=[teacher])
+
+        query = dict(teachers__first_name=teacher.first_name, teachers__last_name=teacher.last_name)
+        self.assertEqual(Student.objects.filter(**query).count(), 1)
+
+
+class CreateTeacherTest(TestCase):
+
+    def test_create_teacher(self):
+        teacher = Teacher.objects.create(
+            first_name="Jane",
+            last_name="Doe"
+        )
+
+        self.assertTrue(isinstance(teacher, Teacher))
+        self.assertEqual(str(teacher), "Doe, Jane")
 
 
 class TestStudentsListView(TestCase):
