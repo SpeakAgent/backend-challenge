@@ -20,5 +20,5 @@ from students import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^grade/(?P<grade>[a-zA-Z0-9_-]+)/', views.GradeView.as_view()),
+    url(r'^grade/(?P<grade>.+?)/', views.GradeView.as_view()),
 ]
