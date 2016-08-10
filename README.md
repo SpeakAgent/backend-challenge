@@ -15,6 +15,8 @@ Fork based on Speak Agent coding challenge for backend developers
 
 - Added new model named Teacher with fields first_name and last_name.
 
+- Hookup models to Student model, each student has one school, but can have multiple teachers.
+
 - Added Django Rest Framework and created two api calls, one to retrieve a [list of all students](https://speakagentchallenge.herokuapp.com/api/students/) and one to [retrieve students by PK](https://speakagentchallenge.herokuapp.com/api/students/1/).
 
 - Deployed application to Heroku, application URL: [https://speakagentchallenge.herokuapp.com](https://speakagentchallenge.herokuapp.com).  Created some data for the deployed application.
