@@ -4,7 +4,7 @@
   <h1>Students in grade {{ grade }}:</h2>
   {% if object_list %}
     <ul>
-      {% for student in object_list %}
+      {% for student in student_list %}
         <li>{{ student.last_name }}, {{ student.first_name }} - Grade {{ grade }}, born {{ student.date_of_birth }}</li>
       {% endfor %}
     </ul>
