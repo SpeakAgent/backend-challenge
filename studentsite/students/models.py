@@ -36,7 +36,7 @@ class Teacher(PersonInfo):
 
 
 class Student(PersonInfo):
-    date_of_birth = models.DateField(blank=True, null=True)
+    dob = models.DateField(blank=True, null=True)
 
     # Using CharField for the grade could be problematic without some
     # validation, since it's used verbatim as part of a URL. In a real-world
