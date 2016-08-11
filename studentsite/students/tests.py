@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
 
 from .factories import SAMPLE_GRADES, SchoolFactory, StudentFactory, TeacherFactory
-from .models import School, Student, Teacher
+from .models import School, Student, StudentSerializer, Teacher
 
 
 client = Client()
@@ -49,6 +49,20 @@ class CreateStudentTest(TestCase):
 
         query = dict(teachers__first_name=teacher.first_name, teachers__last_name=teacher.last_name)
         self.assertEqual(Student.objects.filter(**query).count(), 1)
+
+
+class SerializeStudentTest(TestCase):
+
+    def test_serialize_student(self):
+        student = StudentFactory.create()
+        serializer = StudentSerializer(student)
+        data = serializer.data
+
+        self.assertEqual(student.first_name, data["first_name"])
+        self.assertEqual(student.last_name, data["last_name"])
+        self.assertEqual(student.grade, data["grade"])
+        self.assertEqual(student.date_of_birth.isoformat(), data["date_of_birth"])
+        self.assertEqual(len(data.keys()), 4)
 
 
 class CreateTeacherTest(TestCase):
@@ -95,3 +109,23 @@ class TestStudentsListView(TestCase):
         """Test that a message is shown when no students are found in a grade."""
         response = client.get(reverse("students_list"), dict(grade="doesnotexist"))
         self.assertIn(b"No students found.", response.content)
+
+
+class StudentRestApiTest(TestCase):
+
+    def test_student_list(self):
+        """Test that all students can be retrieved as JSON."""
+        students = StudentFactory.create_batch(10)
+        response = client.get(reverse("api:student-list"), dict(format="json"))
+        response_data = response.json()
+        self.assertEqual(len(students), len(response_data))
+
+    def test_student_detail(self):
+        """Test that a single student can be retrieved as JSON."""
+        student = StudentFactory.create()
+        response = client.get(reverse("api:student-detail", args=[student.id]), dict(format="json"))
+        response_data = response.json()
+        self.assertEqual(student.first_name, response_data["first_name"])
+        self.assertEqual(student.last_name, response_data["last_name"])
+        self.assertEqual(student.grade, response_data["grade"])
+        self.assertEqual(student.date_of_birth.isoformat(), response_data["date_of_birth"])

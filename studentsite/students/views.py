@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from rest_framework import viewsets
 
-from .models import Student
+from .models import Student, StudentSerializer
 
 
 def students_list(request):
@@ -19,3 +20,8 @@ def students_list(request):
 
     return render(request, "students/students_list.html", dict(
         grade=grade, page_title=page_title, students=students))
+
+
+class StudentViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer

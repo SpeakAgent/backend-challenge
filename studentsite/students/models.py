@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from rest_framework import serializers
 
 
 @python_2_unicode_compatible
@@ -40,3 +41,9 @@ class Student(models.Model):
             f=self.first_name,
             g=self.grade,
             dob=self.date_of_birth)
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ("first_name", "last_name", "grade", "date_of_birth")
