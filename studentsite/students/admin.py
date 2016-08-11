@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from students.models import School, Student, Teacher
+from .forms import SchoolForm
+from .models import School, Student, Teacher
 
 
 class SchoolAdmin(admin.ModelAdmin):
-    pass
+    form = SchoolForm
 
 
 admin.site.register(School, SchoolAdmin)
