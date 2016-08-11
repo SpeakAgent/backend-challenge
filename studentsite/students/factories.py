@@ -18,7 +18,7 @@ class SchoolFactory(DjangoModelFactory):
         model = School
 
     title = LazyFunction(lambda: "{} {} School".format(faker.street_name(), random.choice(SCHOOL_LEVELS)))
-    address = LazyFunction(faker.street_address)
+    address = LazyFunction(faker.address)
 
 
 SAMPLE_GRADES = ["Pre-K", "K"] + [str(i) for i in range(1, 13)]
