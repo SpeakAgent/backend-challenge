@@ -1,6 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from models import Student
 
-def index():
+def index(request):
     student_list = Student.objects.order_by('last_name')
-    return student_list
+    return HttpResponse(student_list)
