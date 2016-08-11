@@ -61,7 +61,7 @@ class SerializeStudentTest(TestCase):
         self.assertEqual(student.first_name, data["first_name"])
         self.assertEqual(student.last_name, data["last_name"])
         self.assertEqual(student.grade, data["grade"])
-        self.assertEqual(student.date_of_birth.isoformat(), data["date_of_birth"])
+        self.assertEqual(student.date_of_birth.isoformat(), data["dob"])
         self.assertEqual(len(data.keys()), 4)
 
 
@@ -128,4 +128,4 @@ class StudentRestApiTest(TestCase):
         self.assertEqual(student.first_name, response_data["first_name"])
         self.assertEqual(student.last_name, response_data["last_name"])
         self.assertEqual(student.grade, response_data["grade"])
-        self.assertEqual(student.date_of_birth.isoformat(), response_data["date_of_birth"])
+        self.assertEqual(student.date_of_birth.isoformat(), response_data["dob"])

@@ -44,6 +44,8 @@ class Student(models.Model):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    dob = serializers.DateField(source="date_of_birth")
+
     class Meta:
         model = Student
-        fields = ("first_name", "last_name", "grade", "date_of_birth")
+        fields = ("first_name", "last_name", "grade", "dob")
