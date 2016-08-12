@@ -1,0 +1,11 @@
+{% if student_list %}
+    <ul>
+    {% for Student in student_list %}
+        <SOMETHING HERE TO JUST LIST OUT THE THINGS LIKE IT IS IN THE MODEL NOW></SOMETHING>
+        <li><a href="/students/{{ Student.id }}/">{{ Student.last_name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No students have been registered.</p>
+{% endif %}

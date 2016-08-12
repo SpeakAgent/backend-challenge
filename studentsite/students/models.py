@@ -9,7 +9,7 @@ class Student(models.Model):
     grade = models.CharField(max_length=2)
 
     def __unicode__(self):
-        return u"{l}, {f} - Grade {g}, born {d}\n".format(
+        return u"{l}, {f} - Grade {g}, born {d}".format(
             l=self.last_name,
             f=self.first_name,
             d=self.DOB,
