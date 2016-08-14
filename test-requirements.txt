@@ -1,0 +1,2 @@
+factory_boy==2.7.0
+fake_factory==0.5.10
